@@ -3,6 +3,7 @@ tmp/
 target/
 local.properties
 .settings/
+.classpath
 .loadpath
 .recommenders
 
