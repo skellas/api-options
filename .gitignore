@@ -5,6 +5,8 @@ local.properties
 .settings/
 .classpath
 .loadpath
+.factorypath
+.project
 .recommenders
 
 # Compiled class file
