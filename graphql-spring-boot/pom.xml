@@ -14,11 +14,15 @@
 	<name>graphql-spring-boot</name>
 	<url>https://teachingtechleads.com</url>
 
+	<properties>
+		<graphql.version>6.0.0</graphql.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>6.0.0</version>
+			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.teachingtechleads</groupId>
@@ -33,6 +37,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-spring-boot-starter-test</artifactId>
+			<version>${graphql.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
