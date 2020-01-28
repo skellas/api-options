@@ -2,7 +2,9 @@ package com.teachingtechleads.api.rest;
 
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -10,7 +12,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ public class BookEndpointTest {
         final Long id = Long.valueOf(locationUrl.substring(locationUrl.lastIndexOf("/") + 1));
         final Book persistedBook = bookRepository.findById(id).get();
 
-        assertThat(persistedBook.getAuthor(), Matchers.equalTo(book.getAuthor()));
-        assertThat(persistedBook.getTitle(), Matchers.equalTo(book.getTitle()));
+        assertThat(persistedBook.getAuthor(), equalTo(book.getAuthor()));
+        assertThat(persistedBook.getTitle(), equalTo(book.getTitle()));
     }
 
     @Test
@@ -68,6 +69,21 @@ public class BookEndpointTest {
         // Then
         assertThat(response.getResponse().getContentAsString(), containsString(book.getAuthor()));
         assertThat(response.getResponse().getContentAsString(), containsString(book.getTitle()));
+    }
+
+    @Test
+    public void shouldThrowErrorMessage() throws Exception {
+        // Given
+        final String book = "{\"title\":\"Teaching Tech Leads\"}";
+
+        // When
+        final MvcResult response = mvc.perform(post("/books").accept(APPLICATION_JSON).content(book))
+                .andExpect(status().is(CONFLICT.value())).andReturn();
+
+        // Then
+        final String responseBody = response.getResponse().getContentAsString();
+        assertThat(responseBody, containsString("NULL not allowed for column \\\"AUTHOR\\\""));
+
     }
 
 }
