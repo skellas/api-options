@@ -1,0 +1,14 @@
+type Query {
+    book(id:Long): Book
+    
+    books: [Book]
+}
+
+type Book {
+    id: Long!
+    author: String!
+    title: String!
+    description: String
+    isbn: String
+    synopsis: String
+}
