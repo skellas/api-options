@@ -4,6 +4,16 @@ type Query {
     books: [Book]
 }
 
+type Mutation {
+    createBook(book:BookInput): Book
+}
+
+input BookInput {
+    author: String!
+    title: String!
+    description: String
+}
+
 type Book {
     id: Long!
     author: String!

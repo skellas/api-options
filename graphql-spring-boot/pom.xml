@@ -24,6 +24,11 @@
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>${graphql.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>com.teachingtechleads</groupId>
 			<artifactId>core-data</artifactId>

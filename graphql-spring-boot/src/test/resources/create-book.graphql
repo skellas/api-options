@@ -1,0 +1,6 @@
+mutation CreateBook($book:BookInput) {
+    createBook(book:$book) {
+        title,
+        author
+    }
+}

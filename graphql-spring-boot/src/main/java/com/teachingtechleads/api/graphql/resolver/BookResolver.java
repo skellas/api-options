@@ -6,12 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.teachingtechleads.api.graphql.type.BookInput;
 import com.teachingtechleads.data.object.Book;
 import com.teachingtechleads.data.repository.BookRepository;
 
 @Component
-public class BookResolver implements GraphQLQueryResolver {
+public class BookResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
     private final BookRepository bookRepository;
 
     @Autowired
@@ -26,5 +28,10 @@ public class BookResolver implements GraphQLQueryResolver {
 
     public Collection<Book> books() {
         return bookRepository.findAll();
+    }
+
+    public Book createBook(final BookInput bookInput) {
+        return bookRepository.save(Book.builder().author(bookInput.getAuthor()).title(bookInput.getTitle())
+                .description(bookInput.getDescription()).build());
     }
 }

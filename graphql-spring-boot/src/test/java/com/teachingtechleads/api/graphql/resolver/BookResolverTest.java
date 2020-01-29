@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.teachingtechleads.api.graphql.type.BookInput;
 import com.teachingtechleads.data.object.Book;
 import com.teachingtechleads.data.repository.BookRepository;
 
@@ -50,6 +51,22 @@ public class BookResolverTest {
     }
 
     @Test
+    public void shouldReturnCreatedBook() {
+        // Given
+        final Book book = Book.builder().author("Seth Kellas").title("Teaching Tech Leads").build();
+        given(bookRepository.save(book)).willReturn(book.toBuilder().id(1L).build());
+        final BookInput bookInput = BookInput.builder().author("Seth Kellas").title("Teaching Tech Leads").build();
+
+        // When
+        final Book returnedBook = uut.createBook(bookInput);
+
+        // Then
+        assertThat(returnedBook.getId(), equalTo(1L));
+        assertThat(returnedBook.getAuthor(), equalTo(book.getAuthor()));
+        assertThat(returnedBook.getTitle(), equalTo(book.getTitle()));
+    }
+
+    @Test
     public void shouldReturnNullWhenNotFound() {
         // Given
         given(bookRepository.findById(1L)).willReturn(Optional.empty());
@@ -60,6 +77,20 @@ public class BookResolverTest {
         // Then
         verify(bookRepository).findById(1L);
         assertThat(result, Matchers.nullValue());
+    }
+
+    @Test
+    public void shouldTransformBookInput() {
+        // Given
+        final Book book = Book.builder().author("Seth Kellas").title("Teaching Tech Leads").build();
+        given(bookRepository.save(book)).willReturn(book.toBuilder().id(1L).build());
+        final BookInput bookInput = BookInput.builder().author("Seth Kellas").title("Teaching Tech Leads").build();
+
+        // When
+        uut.createBook(bookInput);
+
+        // Then
+        verify(bookRepository).save(book);
     }
 
 }
