@@ -10,6 +10,7 @@
 	</parent>
 
 	<artifactId>spring-data-rest</artifactId>
+    <packaging>jar</packaging>
 
 	<name>spring-data-rest</name>
 	<url>https://teachingtechleads.com</url>
