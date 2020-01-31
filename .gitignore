@@ -14,3 +14,6 @@ local.properties
 
 # Log file
 *.log
+
+# dependencies
+/node_modules
