@@ -13,7 +13,7 @@
 
 	<groupId>com.teachingtechleads</groupId>
 	<artifactId>api-options</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<name>API Options</name>
 
