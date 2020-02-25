@@ -3,30 +3,30 @@ import { render } from '@testing-library/react';
 import BookCard from './BookCard';
 
 test('renders title', () => {
-  // Given
-  const { getByText } = render(<BookCard title='test title' />);
+    // Given
+    const { getByText } = render(<BookCard title="test title" />);
 
-  // When
-  const titleEl = getByText('test title');
+    // When
+    const titleEl = getByText('test title');
 
-  // Then
-  expect(titleEl).toBeInTheDocument();
+    // Then
+    expect(titleEl).toBeInTheDocument();
 });
 test('renders author', () => {
-  // Given
-  const { getByText } = render(<BookCard author='test author' />);
+    // Given
+    const { getByText } = render(<BookCard author="test author" />);
 
-  // When
-  const authorEl = getByText('test author');
-  expect(authorEl).toBeInTheDocument();
+    // When
+    const authorEl = getByText('test author');
+    expect(authorEl).toBeInTheDocument();
 });
 test('renders description', () => {
-  // Given
-  const { getByText } = render(<BookCard title='test description' />);
+    // Given
+    const { getByText } = render(<BookCard title="test description" />);
 
-  // When
-  const descriptionEl = getByText('test description');
+    // When
+    const descriptionEl = getByText('test description');
 
-  // Then
-  expect(descriptionEl).toBeInTheDocument();
+    // Then
+    expect(descriptionEl).toBeInTheDocument();
 });
