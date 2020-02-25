@@ -2,20 +2,16 @@ import React from 'react';
 import {
     render,
     waitForElement,
-    waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { FetchMock, fetchMock } from '@react-mock/fetch';
+import fetch from 'jest-fetch-mock';
 import { act } from 'react-dom/test-utils';
 
 import BookListing from './BookListing';
 
 describe('BookListing functional component', () => {
-    beforeAll(() => {
-        global.fetch = fetch;
-    });
-    afterAll(() => {
-        fetchMock.restore();
-    });
+    beforeEach(() => {
+      fetch.resetMocks()
+    })
 
     it('renders loading screen', () => {
         // When
@@ -30,31 +26,17 @@ describe('BookListing functional component', () => {
         const book = {
             title: 'test title',
             author: 'test author',
-            description: 'description one',
+            description: 'description one'
         };
+        fetch.mockResponse(JSON.stringify({books: [book]}));
 
         await act(async () => {
             // When
-            const { getByText } = renderComponentWithResponse([book]);
+            const { getByText } = render(<BookListing />);
 
             // Then
             await waitForElement(() => getByText('test title'));
         });
     });
 
-    const renderComponentWithResponse = response => {
-        return render(
-            <FetchMock
-                mocks={[
-                    {
-                        matcher: '/books',
-                        method: 'GET',
-                        response: { books: response },
-                    },
-                ]}
-            >
-                <BookListing />
-            </FetchMock>,
-        );
-    };
 });

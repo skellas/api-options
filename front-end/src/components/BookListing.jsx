@@ -7,10 +7,11 @@ export default () => {
     useEffect(() => {
         if (!loaded) {
             const findBooks = async () => {
-                const { books: response } = await fetch('/books')
+                const response = await fetch('http://localhost:8080/books')
                     .then(data => data.json())
-                    .then(json => resolveBooks(json));
-                setBooks(response);
+                    .then(json => resolveBooks(json))
+                    .catch(err => console.log(err));
+                response && setBooks(response.books);
             };
             findBooks();
         }
@@ -18,6 +19,7 @@ export default () => {
     }, [loaded]);
     const resolveBooks = jsonObject => {
         // TODO
+        return jsonObject;
     };
     return (
         <div id="app">
