@@ -1,18 +1,16 @@
 import React from 'react';
-import BookListing from './components/BookListing';
 
 import 'materialize-css/dist/css/materialize.css';
 import { Row, Col, Container } from 'react-materialize';
+
+import MockBookContainer from './containers/MockBookContainer';
 
 const App = () => {
     return (
         <Container>
             <Row>
-                <Col 
-                    m={6}
-                    s={12}
-                >
-                    <BookListing />
+                <Col m={6} s={12}>
+                    <MockBookContainer />
                 </Col>
             </Row>
         </Container>
