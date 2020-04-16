@@ -1,26 +1,16 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 
+import MockBookContainer from './MockBookContainer';
 import { getBooks } from '../services/MockBookService';
-import BookListing from './BookListing';
 
-describe('BookListing functional component', () => {
-    it('renders with no books', () => {
-        // When
-        const { getByText } = render(<BookListing books={[]} />);
-
-        // Then
-        getByText('No Books Provided');
-    });
-
-    it('renders books passed in', async () => {
+describe('MockBookContainer functional component', () => {
+    it('renders with mocked book service provider', async () => {
         // Given
         const books = getBooks();
 
         // When
-        const { getAllByText, getByText } = render(
-            <BookListing books={books} />,
-        );
+        const { getAllByText, getByText } = render(<MockBookContainer />);
 
         await waitFor(() => {
             // Then

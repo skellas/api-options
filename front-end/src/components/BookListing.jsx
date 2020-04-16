@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BookCard from './BookCard';
 
-export default () => {
-    const [books, setBooks] = useState([]);
-    const [loaded, setLoaded] = useState(false);
-    useEffect(() => {
-        if (!loaded) {
-            const findBooks = async () => {
-                const response = await fetch('http://localhost:8080/books')
-                    .then(data => data.json())
-                    .catch(err => console.log(err));
-                response && setBooks(response.books);
-                setLoaded(true);
-            };
-            findBooks();
-        }
-    }, [loaded]);
+export default data => {
     return (
         <React.Fragment>
-            {books.length > 0 ? (
-                books.map((book, key) => {
+            {data.books.length > 0 ? (
+                data.books.map((book, key) => {
                     return (
                         <BookCard
                             key={key}
@@ -30,7 +16,7 @@ export default () => {
                     );
                 })
             ) : (
-                <span>Loading</span>
+                <span>No Books Provided</span>
             )}
         </React.Fragment>
     );
