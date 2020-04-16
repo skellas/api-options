@@ -4,13 +4,13 @@ import BookCard from './BookCard';
 
 test('renders title', () => {
     // Given
-    const { getByText } = render(<BookCard title="test title" />);
+    const { getAllByText } = render(<BookCard title="test title" />);
 
     // When
-    const titleEl = getByText('test title');
+    const titleEls = getAllByText('test title');
 
     // Then
-    expect(titleEl).toBeInTheDocument();
+    expect(titleEls).toHaveLength(2);
 });
 test('renders author', () => {
     // Given
@@ -22,7 +22,7 @@ test('renders author', () => {
 });
 test('renders description', () => {
     // Given
-    const { getByText } = render(<BookCard title="test description" />);
+    const { getByText } = render(<BookCard description="test description" />);
 
     // When
     const descriptionEl = getByText('test description');

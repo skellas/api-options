@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-    render,
-    waitForElement,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import fetch from 'jest-fetch-mock';
-import { act } from 'react-dom/test-utils';
 
 import BookListing from './BookListing';
 
 describe('BookListing functional component', () => {
     beforeEach(() => {
-      fetch.resetMocks()
-    })
+        fetch.resetMocks();
+    });
 
     it('renders loading screen', () => {
         // When
@@ -26,17 +22,16 @@ describe('BookListing functional component', () => {
         const book = {
             title: 'test title',
             author: 'test author',
-            description: 'description one'
+            description: 'description one',
         };
-        fetch.mockResponse(JSON.stringify({books: [book]}));
+        fetch.mockResponse(JSON.stringify({ books: [book] }));
 
-        await act(async () => {
-            // When
-            const { getByText } = render(<BookListing />);
-
+        // When
+        render(<BookListing />);
+        await waitFor(() => {
             // Then
-            await waitForElement(() => getByText('test title'));
+            const titleEls = screen.getAllByText('test title');
+            expect(titleEls).toHaveLength(2);
         });
     });
-
 });

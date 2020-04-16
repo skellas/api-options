@@ -7,32 +7,15 @@ export default () => {
     useEffect(() => {
         if (!loaded) {
             const findBooks = async () => {
-                // const response = await fetch('http://localhost:8080/books')
-                //     .then(data => data.json())
-                //     .then(json => resolveBooks(json))
-                //     .catch(err => console.log(err));
-                // response && setBooks(response.books);
-                setBooks([
-                    {
-                        title: 'Talking with Tech Leads',
-                        author: 'Pat Kua',
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies, odio efficitur vehicula scelerisque, erat tortor facilisis ligula, eu aliquet enim sapien sit amet dolor.'
-                    },
-                    {
-                        title: 'Manager\'s Path',
-                        author: 'Camille Fournier',
-                        description: 'Sed vulputate elit ex, sed rutrum enim tristique a. Phasellus faucibus fermentum lectus. Nunc vestibulum arcu ut nulla fermentum posuere.'
-                    },
-                ])
+                const response = await fetch('http://localhost:8080/books')
+                    .then(data => data.json())
+                    .catch(err => console.log(err));
+                response && setBooks(response.books);
+                setLoaded(true);
             };
             findBooks();
         }
-        setLoaded(true);
     }, [loaded]);
-    const resolveBooks = jsonObject => {
-        // TODO
-        return jsonObject;
-    };
     return (
         <React.Fragment>
             {books.length > 0 ? (

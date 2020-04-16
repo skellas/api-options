@@ -1,42 +1,42 @@
 {
-  "name": "api-options",
-  "version": "1.0.1",
-  "private": true,
-  "dependencies": {
-    "materialize-css": "^1.0.0",
-    "node-fetch": "^2.6.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-materialize": "^3.5.9",
-    "react-scripts": "3.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "clean": "prettier --write '{src,__{tests,mocks}__}/**/*.{js,jsx}'",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "jest-fetch-mock": "^3.0.1",
-    "prettier": "^1.19.1"
-  }
+    "name": "api-options",
+    "version": "1.0.1",
+    "private": true,
+    "dependencies": {
+        "materialize-css": "^1.0.0",
+        "node-fetch": "^2.6.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-materialize": "^3.5.9",
+        "react-scripts": "3.3.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+        "clean": "prettier --write '{src,__{tests,mocks}__}/**/*.{js,jsx}'",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.5.0",
+        "@testing-library/react": "^10.0.2",
+        "jest-environment-jsdom-sixteen": "^1.0.3",
+        "jest-fetch-mock": "^3.0.1",
+        "prettier": "^1.19.1"
+    }
 }
