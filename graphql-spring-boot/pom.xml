@@ -26,6 +26,11 @@
 			<version>${graphql.version}</version>
 		</dependency>
         <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphiql-spring-boot-starter</artifactId>
+            <version>${graphql.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
